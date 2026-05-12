@@ -1,42 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="100">
   <defs>
-    <style>
-      text {
-        font-family: monospace;
-        font-size: 32px;
-        font-weight: bold;
-      }
-    </style>
 
-    <!-- The sweeping gradient -->
-    <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#2222ff">
-        <animate attributeName="offset"
-          values="0;0.4;0;0"
-          dur="3s" repeatCount="indefinite"/>
-      </stop>
-      <stop offset="50%"  stop-color="white">
-        <animate attributeName="offset"
-          values="0.5;0.6;0.5;0.5"
-          dur="3s" repeatCount="indefinite"/>
-      </stop>
-      <stop offset="100%" stop-color="#ff2222">
-        <animate attributeName="offset"
-          values="1;1;0.6;1"
-          dur="3s" repeatCount="indefinite"/>
-      </stop>
+    <!-- Sweeping blue to red gradient, no white middle -->
+    <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="0%"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2222ff"/>
+      <stop offset="100%" stop-color="#ff2222"/>
+      <animateTransform attributeName="gradientTransform"
+        type="translate"
+        values="-600 0; 600 0; -600 0"
+        dur="4s"
+        repeatCount="indefinite"/>
     </linearGradient>
+
+    <!-- Scanline pattern: thin repeating horizontal stripes -->
+    <pattern id="scanlines" x="0" y="0" width="600" height="4"
+             patternUnits="userSpaceOnUse">
+      <rect width="600" height="2" fill="black" opacity="0.25"/>
+      <rect y="2"  width="600" height="2" fill="transparent"/>
+      <animateTransform attributeName="patternTransform"
+        type="translate"
+        values="0 0; 0 4"
+        dur="0.15s"
+        repeatCount="indefinite"/>
+    </pattern>
+
+    <!-- Clip the scanlines to only show over the text area -->
+    <clipPath id="textclip">
+      <text
+        x="50%"
+        y="65"
+        text-anchor="middle"
+        font-family="'Press Start 2P', monospace"
+        font-size="28"
+        font-weight="bold">Jenn Roselynn</text>
+    </clipPath>
 
   </defs>
 
   <!-- Dark background -->
   <rect width="600" height="100" fill="#111111"/>
 
-  <!-- Animated text -->
+  <!-- Main text with sweeping gradient -->
   <text
     x="50%"
     y="65"
     text-anchor="middle"
+    font-family="'Press Start 2P', monospace"
+    font-size="28"
+    font-weight="bold"
     fill="url(#sweep)">Jenn Roselynn</text>
+
+  <!-- Scanline overlay clipped to text shape -->
+  <rect width="600" height="100"
+        fill="url(#scanlines)"
+        clip-path="url(#textclip)"/>
 
 </svg>
