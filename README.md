@@ -5,11 +5,10 @@
   <hr width="100%">
 
   [![Itch.io](https://img.shields.io/badge/Itch.io-FA5C5C?logo=itch.io&logoColor=white)](https://transmogrify-my-life.itch.io)
-  [![Boot.dev](https://img.shields.io/badge/Boot.dev-6B21A8?logo=data:image/svg+xml;...&logoColor=white)](https://www.boot.dev/u/jenn_roselynn)
 
   <hr width="100%">
 
-  ![Snake animation](https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-USERNAME/refs/heads/output/github-contribution-grid-snake-dark.svg)
+  ![Snake animation](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/refs/heads/output/github-contribution-grid-snake-dark.svg)
 
 </div>
 
