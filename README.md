@@ -5,7 +5,9 @@
   <hr width="100%">
 
   [![Itch.io](https://img.shields.io/badge/Itch.io-FA5C5C?logo=itch.io&logoColor=white)](https://transmogrify-my-life.itch.io)
-  [![Boot.dev](https://img.shields.io/badge/Boot.dev-6B21A8?logo=https://www.boot.dev/img/bootdev-logo-full-400.png&logoColor=white&style=for-the-badge)](https://www.boot.dev/u/jenn_roselynn)
+  <a href="https://www.boot.dev/u/jenn_roselynn">
+  <img src="https://www.boot.dev/img/bootdev-logo-full-400.png" height="28" alt="Boot.dev Profile"/>
+</a>
 
   <hr width="100%">
 
