@@ -4,7 +4,9 @@
 
   <hr width="100%">
 
-  [![Itch.io](https://img.shields.io/badge/Itch.io-FA5C5C?logo=itch.io&logoColor=white)](https://transmogrify-my-life.itch.io)
+  <a href="https://transmogrify-my-life.itch.io">
+  <img src="https://static.itch.io/images/app-icon.svg" height="40" alt="Itch.io Profile"/>
+</a>
   <a href="https://www.boot.dev/u/jenn_roselynn">
   <img src="https://www.boot.dev/img/bootdev-logo-full-400.png" height="40" alt="Boot.dev Profile"/>
 </a>
