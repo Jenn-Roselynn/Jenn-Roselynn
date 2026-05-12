@@ -1,24 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="100">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
       text {
-        font-family: 'Press Start 2P', monospace;
+        font-family: monospace;
         font-size: 32px;
-        fill: white;
-      }
-      .wave {
-        animation: wave 1.5s ease-in-out infinite alternate;
-      }
-      @keyframes wave {
-        from { fill: #ff2222; }
-        to   { fill: #2222ff; }
+        font-weight: bold;
       }
     </style>
+
+    <!-- The sweeping gradient -->
+    <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#2222ff">
+        <animate attributeName="offset"
+          values="0;0.4;0;0"
+          dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%"  stop-color="white">
+        <animate attributeName="offset"
+          values="0.5;0.6;0.5;0.5"
+          dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#ff2222">
+        <animate attributeName="offset"
+          values="1;1;0.6;1"
+          dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
   </defs>
+
+  <!-- Dark background -->
+  <rect width="600" height="100" fill="#111111"/>
+
+  <!-- Animated text -->
   <text
     x="50%"
     y="65"
     text-anchor="middle"
-    class="wave">Jenn Roselynn</text>
+    fill="url(#sweep)">Jenn Roselynn</text>
+
 </svg>
