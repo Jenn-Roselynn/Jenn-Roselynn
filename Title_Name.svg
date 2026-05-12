@@ -4,183 +4,89 @@
       @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
       text {
         font-family: 'Press Start 2P', 'Courier New', monospace;
-        font-size: 26px;
-        font-weight: bold;
+        font-size: 22px;
         text-transform: uppercase;
+        letter-spacing: 2px;
       }
+      .star { filter: drop-shadow(0 0 2px white); }
     </style>
 
-    <linearGradient id="hueBleed" x1="100%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"><animate attributeName="stop-color" values="#ff0000;#ffff00;#00ff00;#00ffff;#0000ff;#ff00ff;#ff0000" dur="4s" repeatCount="indefinite"/></stop>
-      <stop offset="50%"><animate attributeName="stop-color" values="#00ff00;#00ffff;#0000ff;#ff00ff;#ff0000;#ffff00;#00ff00" dur="4s" repeatCount="indefinite"/></stop>
-      <stop offset="100%"><animate attributeName="stop-color" values="#ff00ff;#ff0000;#ffff00;#00ff00;#00ffff;#0000ff;#ff00ff" dur="4s" repeatCount="indefinite"/></stop>
+    <!-- Retro Sweep Gradient -->
+    <linearGradient id="segaSweep" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2222ff"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#2222ff"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-800 0; 800 0" dur="3s" repeatCount="indefinite"/>
     </linearGradient>
 
-    <symbol id="star-shape" viewBox="0 0 10 10">
-      <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" />
+    <!-- Star Shape (4-pointed sparkle) -->
+    <symbol id="sparkle" viewBox="0 0 10 10">
+      <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="white"/>
     </symbol>
 
-    <g id="comet-head">
-      <use href="#star-shape" x="-5" y="-5" width="10" height="10" fill="#FFF" />
-      <use href="#star-shape" x="-3" y="-3" width="6" height="6" fill="#FFD86B" />
-    </g>
-
-    <rect id="p-core" width="3" height="3" fill="url(#hueBleed)" />
-
-    <g id="trail-heavy">
-      <g transform="rotate(-45)">
-        <use href="#p-core" x="8" y="0"><animate attributeName="width" values="25;5" dur="0.2s" repeatCount="indefinite"/></use>
-        <use href="#p-core" x="15" y="-3"><animate attributeName="x" values="15;110" dur="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="0.8s" repeatCount="indefinite"/></use>
-        <use href="#p-core" x="15" y="3"><animate attributeName="x" values="15;110" dur="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="0.9s" repeatCount="indefinite"/></use>
-        <use href="#p-core" x="30" y="-6" width="2" height="2"><animate attributeName="x" values="30;150" dur="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="1.4s" repeatCount="indefinite"/></use>
-        <use href="#p-core" x="30" y="6" width="2" height="2"><animate attributeName="x" values="30;150" dur="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="1.5s" repeatCount="indefinite"/></use>
-      </g>
-    </g>
-
-    <g id="trail-zippy">
-      <g transform="rotate(-35)">
-        <use href="#p-core" x="5" y="0" width="2" height="2"><animate attributeName="width" values="15;2" dur="0.15s" repeatCount="indefinite"/></use>
-        <use href="#p-core" x="10" y="-2" width="1" height="1"><animate attributeName="x" values="10;60" dur="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0" dur="0.5s" repeatCount="indefinite"/></use>
-      </g>
-    </g>
-
+    <!-- Scanline Overlay -->
     <pattern id="crt" width="800" height="4" patternUnits="userSpaceOnUse">
-      <rect width="800" height="2" fill="black" opacity="0.3" />
-      <animateTransform attributeName="patternTransform" type="translate" values="0 0; 0 4" dur="0.15s" repeatCount="indefinite" />
+      <rect width="800" height="2" fill="black" opacity="0.3"/>
     </pattern>
   </defs>
 
-  <rect width="800" height="200" fill="#050505" />
+  <rect width="800" height="200" fill="#000000"/>
 
-  <!-- TWINKLING STAR FIELD -->
-  <g>
-    <use href="#star-shape" x="120" y="40" width="8" height="8"><animate attributeName="opacity" values="0;1;0;0" dur="2.2s" repeatCount="indefinite"/><animate attributeName="fill" values="#ff0000;#00ffff;#ffffff" dur="3.1s" repeatCount="indefinite"/></use>
-    <use href="#star-shape" x="280" y="30" width="10" height="10"><animate attributeName="opacity" values="0;1;0;0" dur="2.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="fill" values="#ffff00;#ff00ff" dur="4.2s" repeatCount="indefinite"/></use>
-    <use href="#star-shape" x="620" y="35" width="9" height="9"><animate attributeName="opacity" values="0;1;0;0" dur="3.2s" begin="0.1s" repeatCount="indefinite"/><animate attributeName="fill" values="#ffffff;#0000ff;#ff0000" dur="3.6s" repeatCount="indefinite"/></use>
-    <use href="#star-shape" x="150" y="165" width="9" height="9"><animate attributeName="opacity" values="0;1;0;0" dur="2.5s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="fill" values="#ff3b30;#ffffff;#4cd964" dur="2.8s" repeatCount="indefinite"/></use>
-    <use href="#star-shape" x="730" y="90" width="8" height="8"><animate attributeName="opacity" values="0;1;0;0" dur="3.1s" begin="1.3s" repeatCount="indefinite"/><animate attributeName="fill" values="#ffffff;#ffcc00" dur="3.2s" repeatCount="indefinite"/></use>
-  </g>
-
-  <!-- Group A: The Heavy Rain (Scale isolated in parent, Translate in child) -->
-  <g transform="scale(1.4)">
-    <g>
-      <animateTransform id="h1" attributeName="transform" type="translate" from="600,-40" to="-200,300" dur="8s" begin="0s; h1.end+10s" fill="freeze" />
-      <use href="#trail-heavy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(1.3)">
-    <g>
-      <animateTransform id="h2" attributeName="transform" type="translate" from="850,0" to="250,450" dur="9.5s" begin="4s; h2.end+12s" fill="freeze" />
-      <use href="#trail-heavy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(1.5)">
-    <g>
-      <animateTransform id="h3" attributeName="transform" type="translate" from="400,-80" to="-300,320" dur="11s" begin="8s; h3.end+9s" fill="freeze" />
-      <use href="#trail-heavy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(1.4)">
-    <g>
-      <animateTransform id="h4" attributeName="transform" type="translate" from="1000,60" to="300,410" dur="8.5s" begin="12s; h4.end+14s" fill="freeze" />
-      <use href="#trail-heavy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(1.3)">
-    <g>
-      <animateTransform id="h5" attributeName="transform" type="translate" from="700,-50" to="-100,280" dur="10s" begin="16s; h5.end+11s" fill="freeze" />
-      <use href="#trail-heavy" /><use href="#comet-head" />
-    </g>
+  <!-- Star Trail Orbiting the Text -->
+  <g class="star-container">
+    <!-- Star 1: Rainbow Cycle -->
+    <use href="#sparkle" width="12" height="12">
+      <animateMotion path="M150,70 L650,70 L650,130 L150,130 Z" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#ff0000;#ffff00;#00ff00;#00ffff;#0000ff;#ff00ff;#ff0000" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.5;1" dur="0.2s" repeatCount="indefinite" />
+    </use>
+    <!-- Star 2: Offset -->
+    <use href="#sparkle" width="10" height="10">
+      <animateMotion path="M150,70 L650,70 L650,130 L150,130 Z" dur="4s" begin="1s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#ffff00;#00ff00;#00ffff;#0000ff;#ff00ff;#ff0000;#ffff00" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0;1" dur="0.3s" repeatCount="indefinite" />
+    </use>
+    <!-- Star 3: Offset -->
+    <use href="#sparkle" width="8" height="8">
+      <animateMotion path="M150,70 L650,70 L650,130 L150,130 Z" dur="4s" begin="2s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#00ffff;#ff0000;#ffff00" dur="1.5s" repeatCount="indefinite" />
+    </use>
+    <!-- Star 4: Offset -->
+    <use href="#sparkle" width="12" height="12">
+      <animateMotion path="M150,70 L650,70 L650,130 L150,130 Z" dur="4s" begin="3s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#ffffff;#0000ff;#ffffff" dur="0.8s" repeatCount="indefinite" />
+    </use>
   </g>
 
-  <!-- Group B: The Zippy Rain -->
-  <g transform="scale(0.7)">
-    <g>
-      <animateTransform id="z1" attributeName="transform" type="translate" from="900,40" to="-100,240" dur="2.8s" begin="2s; z1.end+15s" fill="freeze" />
-      <use href="#trail-zippy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(0.8)">
-    <g>
-      <animateTransform id="z2" attributeName="transform" type="translate" from="1100,120" to="100,420" dur="3.2s" begin="6s; z2.end+14s" fill="freeze" />
-      <use href="#trail-zippy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(0.7)">
-    <g>
-      <animateTransform id="z3" attributeName="transform" type="translate" from="600,-20" to="-100,200" dur="2.6s" begin="10s; z3.end+16s" fill="freeze" />
-      <use href="#trail-zippy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(0.8)">
-    <g>
-      <animateTransform id="z4" attributeName="transform" type="translate" from="1300,100" to="200,450" dur="3s" begin="14s; z4.end+13s" fill="freeze" />
-      <use href="#trail-zippy" /><use href="#comet-head" />
-    </g>
-  </g>
-  <g transform="scale(0.6)">
-    <g>
-      <animateTransform id="z5" attributeName="transform" type="translate" from="950,-40" to="-200,260" dur="3.4s" begin="18s; z5.end+17s" fill="freeze" />
-      <use href="#trail-zippy" /><use href="#comet-head" />
-    </g>
-  </g>
-
-  <!-- TITLE BLOCK -->
+  <!-- Title Name with Slower Jumps -->
   <g text-anchor="middle" transform="translate(400, 110)">
-    <g transform="translate(-210, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">J<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">J<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(-180, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">E<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.1s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">E<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.1s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(-150, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">N<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.2s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">N<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.2s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(-120, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">N<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">N<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(-90, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">-<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.4s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">-<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.4s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(-60, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">R<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.5s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">R<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.5s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(-30, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">O<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">O<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(0, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">S<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.7s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">S<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.7s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(30, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">E<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.8s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">E<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.8s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(60, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">L<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.9s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">L<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.9s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(90, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">Y<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.0s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">Y<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.0s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(120, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">N<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.1s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">N<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.1s" repeatCount="indefinite"/></text>
-    </g>
-    <g transform="translate(150, 0)">
-      <text y="4" fill="#440000" opacity="0.6" dx="3">N<animate attributeName="y" values="4;-22;4;4" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.2s" repeatCount="indefinite"/></text>
-      <text y="0" fill="url(#hueBleed)">N<animate attributeName="y" values="0;-26;0;0" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.2s" repeatCount="indefinite"/></text>
-    </g>
+    <!-- J -->
+    <text x="-220" y="0" fill="url(#segaSweep)">J<animate attributeName="y" values="0;-25;0" dur="2s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- E -->
+    <text x="-190" y="0" fill="url(#segaSweep)">E<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- N -->
+    <text x="-160" y="0" fill="url(#segaSweep)">N<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- N -->
+    <text x="-130" y="0" fill="url(#segaSweep)">N<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- - -->
+    <text x="-100" y="0" fill="white">-<animate attributeName="y" values="0;-15;0" dur="2s" begin="0.4s" repeatCount="indefinite" /></text>
+    <!-- R -->
+    <text x="-70" y="0" fill="url(#segaSweep)">R<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- O -->
+    <text x="-40" y="0" fill="url(#segaSweep)">O<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- S -->
+    <text x="-10" y="0" fill="url(#segaSweep)">S<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- E -->
+    <text x="20" y="0" fill="url(#segaSweep)">E<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- L -->
+    <text x="50" y="0" fill="url(#segaSweep)">L<animate attributeName="y" values="0;-25;0" dur="2s" begin="0.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- Y -->
+    <text x="80" y="0" fill="url(#segaSweep)">Y<animate attributeName="y" values="0;-25;0" dur="2s" begin="1.0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- N -->
+    <text x="110" y="0" fill="url(#segaSweep)">N<animate attributeName="y" values="0;-25;0" dur="2s" begin="1.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
+    <!-- N -->
+    <text x="140" y="0" fill="url(#segaSweep)">N<animate attributeName="y" values="0;-25;0" dur="2s" begin="1.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" /></text>
   </g>
 
-  <rect width="800" height="200" fill="url(#crt)" pointer-events="none" />
+  <rect width="800" height="200" fill="url(#crt)" pointer-events="none"/>
 </svg>
-
