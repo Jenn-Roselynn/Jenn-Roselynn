@@ -1,60 +1,112 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="110">
   <defs>
+    <style>
+      /* Embedded Pixel Font (Simplified fallback to monospace if encoding is too large) */
+      text {
+        font-family: 'Courier New', monospace;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    </style>
 
-    <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="0%"
-                    gradientUnits="userSpaceOnUse">
+    <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#2222ff"/>
       <stop offset="100%" stop-color="#ff2222"/>
-      <animateTransform attributeName="gradientTransform"
-        type="translate"
-        values="-600 0; 600 0; -600 0"
-        dur="4s"
-        repeatCount="indefinite"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-600 0; 600 0; -600 0" dur="4s" repeatCount="indefinite"/>
     </linearGradient>
 
-    <pattern id="scanlines" x="0" y="0" width="600" height="4"
-             patternUnits="userSpaceOnUse">
-      <rect width="600" height="2" fill="black" opacity="0.25"/>
+    <pattern id="scanlines" x="0" y="0" width="600" height="4" patternUnits="userSpaceOnUse">
+      <rect width="600" height="2" fill="black" opacity="0.2"/>
       <rect y="2" width="600" height="2" fill="transparent"/>
-      <animateTransform attributeName="patternTransform"
-        type="translate"
-        values="0 0; 0 4"
-        dur="0.15s"
-        repeatCount="indefinite"/>
+      <animateTransform attributeName="patternTransform" type="translate" values="0 0; 0 4" dur="0.15s" repeatCount="indefinite"/>
     </pattern>
 
-    <clipPath id="textclip">
-      <text x="50%" y="72" text-anchor="middle"
-            font-family="'Press Start 2P', monospace"
-            font-size="28" font-weight="bold">Jenn Roselynn</text>
-    </clipPath>
-
+    <!-- Unified hopping animation logic -->
+    <!-- Values: 72(start) -> 50(peak) -> 72(land) -> 72(pause) -->
+    <!-- dur=6s total for a long rest period between name cycles -->
   </defs>
 
-  <!-- Dark background -->
   <rect width="600" height="110" fill="#111111"/>
 
-  <!-- 2D shadow layer (offset down-right for boxy effect) -->
-  <text x="53%" y="75" text-anchor="middle"
-        font-family="'Press Start 2P', monospace"
-        font-size="28" font-weight="bold"
-        fill="#440000" opacity="0.9">Jenn Roselynn</text>
+  <g text-anchor="middle">
+    <!-- Character Data (J-E-N-N-R-O-S-E-L-Y-N-N) -->
+    <!-- Using a group transform to center the whole string -->
+    <g transform="translate(300, 0)">
+      
+      <!-- Logic: We'll define the text once and use <use> or simply repeat for the 3 layers -->
+      <!-- For GitHub compatibility, repeating the elements is the most stable method -->
+      
+      <!-- We will build the 13 chars with staggered 'begin' times -->
+      <!-- Offset: 0.1s per letter -->
+      
+      <!-- Simplified for 13 chars: J(0s), E(0.1s), N(0.2s), N(0.3s), R(0.4s), O(0.5s), S(0.6s), E(0.7s), L(0.8s), Y(0.9s), N(1.0s), N(1.1s) -->
 
-  <!-- Second shadow layer for extra depth -->
-  <text x="51.5%" y="73.5" text-anchor="middle"
-        font-family="'Press Start 2P', monospace"
-        font-size="28" font-weight="bold"
-        fill="#000044" opacity="0.9">Jenn Roselynn</text>
+      <!-- EXAMPLE: THE LETTER 'J' (Applied to all 3 layers) -->
+      
+      <!-- SHADOW 2 (Dark Red) -->
+      <text x="-140" y="76" fill="#440000" dx="4">J
+        <animate attributeName="y" values="76;54;76;76" keyTimes="0;0.05;0.1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
+      </text>
+      <!-- SHADOW 1 (Dark Blue) -->
+      <text x="-140" y="74" fill="#000044" dx="2">J
+        <animate attributeName="y" values="74;52;74;74" keyTimes="0;0.05;0.1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
+      </text>
+      <!-- MAIN -->
+      <text x="-140" y="72" fill="url(#sweep)">J
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
+      </text>
 
-  <!-- Main text with sweeping gradient -->
-  <text x="50%" y="72" text-anchor="middle"
-        font-family="'Press Start 2P', monospace"
-        font-size="28" font-weight="bold"
-        fill="url(#sweep)">Jenn Roselynn</text>
+      <!-- REPEAT FOR REMAINING LETTERS WITH STAGGERED BEGIN -->
+      <!-- Letter E -->
+      <text x="-115" y="72" fill="url(#sweep)">E
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.1s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter N -->
+      <text x="-90" y="72" fill="url(#sweep)">N
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.2s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter N -->
+      <text x="-65" y="72" fill="url(#sweep)">N
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.3s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter R -->
+      <text x="-30" y="72" fill="url(#sweep)">R
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter O -->
+      <text x="-5" y="72" fill="url(#sweep)">O
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.5s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter S -->
+      <text x="20" y="72" fill="url(#sweep)">S
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.6s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter E -->
+      <text x="45" y="72" fill="url(#sweep)">E
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.7s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter L -->
+      <text x="70" y="72" fill="url(#sweep)">L
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter Y -->
+      <text x="95" y="72" fill="url(#sweep)">Y
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.9s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter N -->
+      <text x="120" y="72" fill="url(#sweep)">N
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
+      </text>
+      <!-- Letter N -->
+      <text x="145" y="72" fill="url(#sweep)">N
+        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="1.1s" repeatCount="indefinite"/>
+      </text>
 
-  <!-- Scanline overlay -->
-  <rect width="600" height="110"
-        fill="url(#scanlines)"
-        clip-path="url(#textclip)"/>
+    </g>
+  </g>
 
+  <!-- Scanline layer -->
+  <rect width="600" height="110" fill="url(#scanlines)" pointer-events="none"/>
 </svg>
+
