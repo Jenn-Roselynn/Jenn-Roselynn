@@ -5,6 +5,7 @@
   <hr width="100%">
 
   [![Itch.io](https://img.shields.io/badge/Itch.io-FA5C5C?logo=itch.io&logoColor=white)](https://transmogrify-my-life.itch.io)
+  [![Boot.dev](https://img.shields.io/badge/Boot.dev-6B21A8?logo=data:image/svg+xml;...&logoColor=white)](https://www.boot.dev/u/jenn_roselynn)
 
   <hr width="100%">
 
