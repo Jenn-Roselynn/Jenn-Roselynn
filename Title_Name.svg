@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="110">
   <defs>
 
-    <!-- Sweeping blue to red gradient, no white middle -->
     <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="0%"
                     gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#2222ff"/>
@@ -13,11 +12,10 @@
         repeatCount="indefinite"/>
     </linearGradient>
 
-    <!-- Scanline pattern: thin repeating horizontal stripes -->
     <pattern id="scanlines" x="0" y="0" width="600" height="4"
              patternUnits="userSpaceOnUse">
       <rect width="600" height="2" fill="black" opacity="0.25"/>
-      <rect y="2"  width="600" height="2" fill="transparent"/>
+      <rect y="2" width="600" height="2" fill="transparent"/>
       <animateTransform attributeName="patternTransform"
         type="translate"
         values="0 0; 0 4"
@@ -25,34 +23,37 @@
         repeatCount="indefinite"/>
     </pattern>
 
-    <!-- Clip the scanlines to only show over the text area -->
     <clipPath id="textclip">
-      <text
-        x="50%"
-        y="65"
-        text-anchor="middle"
-        font-family="'Press Start 2P', monospace"
-        font-size="28"
-        font-weight="bold">Jenn Roselynn</text>
+      <text x="50%" y="72" text-anchor="middle"
+            font-family="'Press Start 2P', monospace"
+            font-size="28" font-weight="bold">Jenn Roselynn</text>
     </clipPath>
 
   </defs>
 
   <!-- Dark background -->
-  <rect width="600" height="100" fill="#111111"/>
+  <rect width="600" height="110" fill="#111111"/>
+
+  <!-- 2D shadow layer (offset down-right for boxy effect) -->
+  <text x="53%" y="75" text-anchor="middle"
+        font-family="'Press Start 2P', monospace"
+        font-size="28" font-weight="bold"
+        fill="#440000" opacity="0.9">Jenn Roselynn</text>
+
+  <!-- Second shadow layer for extra depth -->
+  <text x="51.5%" y="73.5" text-anchor="middle"
+        font-family="'Press Start 2P', monospace"
+        font-size="28" font-weight="bold"
+        fill="#000044" opacity="0.9">Jenn Roselynn</text>
 
   <!-- Main text with sweeping gradient -->
-  <text
-    x="50%"
-    y="65"
-    text-anchor="middle"
-    font-family="'Press Start 2P', monospace"
-    font-size="28"
-    font-weight="bold"
-    fill="url(#sweep)">Jenn Roselynn</text>
+  <text x="50%" y="72" text-anchor="middle"
+        font-family="'Press Start 2P', monospace"
+        font-size="28" font-weight="bold"
+        fill="url(#sweep)">Jenn Roselynn</text>
 
-  <!-- Scanline overlay clipped to text shape -->
-  <rect width="600" height="100"
+  <!-- Scanline overlay -->
+  <rect width="600" height="110"
         fill="url(#scanlines)"
         clip-path="url(#textclip)"/>
 
