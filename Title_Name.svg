@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="110">
   <defs>
     <style>
-      /* Embedded Pixel Font (Simplified fallback to monospace if encoding is too large) */
       text {
         font-family: 'Courier New', monospace;
-        font-size: 24px;
+        font-size: 26px;
         font-weight: bold;
         text-transform: uppercase;
       }
@@ -17,96 +16,112 @@
     </linearGradient>
 
     <pattern id="scanlines" x="0" y="0" width="600" height="4" patternUnits="userSpaceOnUse">
-      <rect width="600" height="2" fill="black" opacity="0.2"/>
+      <rect width="600" height="2" fill="black" opacity="0.25"/>
       <rect y="2" width="600" height="2" fill="transparent"/>
       <animateTransform attributeName="patternTransform" type="translate" values="0 0; 0 4" dur="0.15s" repeatCount="indefinite"/>
     </pattern>
-
-    <!-- Unified hopping animation logic -->
-    <!-- Values: 72(start) -> 50(peak) -> 72(land) -> 72(pause) -->
-    <!-- dur=6s total for a long rest period between name cycles -->
   </defs>
 
   <rect width="600" height="110" fill="#111111"/>
 
   <g text-anchor="middle">
-    <!-- Character Data (J-E-N-N-R-O-S-E-L-Y-N-N) -->
-    <!-- Using a group transform to center the whole string -->
-    <g transform="translate(300, 0)">
-      
-      <!-- Logic: We'll define the text once and use <use> or simply repeat for the 3 layers -->
-      <!-- For GitHub compatibility, repeating the elements is the most stable method -->
-      
-      <!-- We will build the 13 chars with staggered 'begin' times -->
-      <!-- Offset: 0.1s per letter -->
-      
-      <!-- Simplified for 13 chars: J(0s), E(0.1s), N(0.2s), N(0.3s), R(0.4s), O(0.5s), S(0.6s), E(0.7s), L(0.8s), Y(0.9s), N(1.0s), N(1.1s) -->
+    <!-- Grouping all letters to keep them aligned. 
+         Each letter block contains: Shadow 2 (Red), Shadow 1 (Blue), and Main (Sweep) -->
+    
+    <!-- J -->
+    <g>
+      <text x="130" y="76" fill="#440000" dx="3">J<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0s" repeatCount="indefinite"/></text>
+      <text x="130" y="74" fill="#000044" dx="1.5">J<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0s" repeatCount="indefinite"/></text>
+      <text x="130" y="72" fill="url(#sweep)">J<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0s" repeatCount="indefinite"/></text>
+    </g>
 
-      <!-- EXAMPLE: THE LETTER 'J' (Applied to all 3 layers) -->
-      
-      <!-- SHADOW 2 (Dark Red) -->
-      <text x="-140" y="76" fill="#440000" dx="4">J
-        <animate attributeName="y" values="76;54;76;76" keyTimes="0;0.05;0.1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
-      </text>
-      <!-- SHADOW 1 (Dark Blue) -->
-      <text x="-140" y="74" fill="#000044" dx="2">J
-        <animate attributeName="y" values="74;52;74;74" keyTimes="0;0.05;0.1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
-      </text>
-      <!-- MAIN -->
-      <text x="-140" y="72" fill="url(#sweep)">J
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0s" repeatCount="indefinite"/>
-      </text>
+    <!-- E -->
+    <g>
+      <text x="155" y="76" fill="#440000" dx="3">E<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.1s" repeatCount="indefinite"/></text>
+      <text x="155" y="74" fill="#000044" dx="1.5">E<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.1s" repeatCount="indefinite"/></text>
+      <text x="155" y="72" fill="url(#sweep)">E<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.1s" repeatCount="indefinite"/></text>
+    </g>
 
-      <!-- REPEAT FOR REMAINING LETTERS WITH STAGGERED BEGIN -->
-      <!-- Letter E -->
-      <text x="-115" y="72" fill="url(#sweep)">E
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.1s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter N -->
-      <text x="-90" y="72" fill="url(#sweep)">N
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.2s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter N -->
-      <text x="-65" y="72" fill="url(#sweep)">N
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.3s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter R -->
-      <text x="-30" y="72" fill="url(#sweep)">R
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter O -->
-      <text x="-5" y="72" fill="url(#sweep)">O
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.5s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter S -->
-      <text x="20" y="72" fill="url(#sweep)">S
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.6s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter E -->
-      <text x="45" y="72" fill="url(#sweep)">E
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.7s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter L -->
-      <text x="70" y="72" fill="url(#sweep)">L
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter Y -->
-      <text x="95" y="72" fill="url(#sweep)">Y
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="0.9s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter N -->
-      <text x="120" y="72" fill="url(#sweep)">N
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
-      </text>
-      <!-- Letter N -->
-      <text x="145" y="72" fill="url(#sweep)">N
-        <animate attributeName="y" values="72;50;72;72" keyTimes="0;0.05;0.1;1" dur="4s" begin="1.1s" repeatCount="indefinite"/>
-      </text>
+    <!-- N -->
+    <g>
+      <text x="180" y="76" fill="#440000" dx="3">N<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.2s" repeatCount="indefinite"/></text>
+      <text x="180" y="74" fill="#000044" dx="1.5">N<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.2s" repeatCount="indefinite"/></text>
+      <text x="180" y="72" fill="url(#sweep)">N<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.2s" repeatCount="indefinite"/></text>
+    </g>
 
+    <!-- N -->
+    <g>
+      <text x="205" y="76" fill="#440000" dx="3">N<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></text>
+      <text x="205" y="74" fill="#000044" dx="1.5">N<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></text>
+      <text x="205" y="72" fill="url(#sweep)">N<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- DASH (-) -->
+    <g>
+      <text x="230" y="76" fill="#440000" dx="3">-<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.4s" repeatCount="indefinite"/></text>
+      <text x="230" y="74" fill="#000044" dx="1.5">-<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.4s" repeatCount="indefinite"/></text>
+      <text x="230" y="72" fill="url(#sweep)">-<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.4s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- R -->
+    <g>
+      <text x="255" y="76" fill="#440000" dx="3">R<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.5s" repeatCount="indefinite"/></text>
+      <text x="255" y="74" fill="#000044" dx="1.5">R<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.5s" repeatCount="indefinite"/></text>
+      <text x="255" y="72" fill="url(#sweep)">R<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.5s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- O -->
+    <g>
+      <text x="280" y="76" fill="#440000" dx="3">O<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></text>
+      <text x="280" y="74" fill="#000044" dx="1.5">O<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></text>
+      <text x="280" y="72" fill="url(#sweep)">O<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- S -->
+    <g>
+      <text x="305" y="76" fill="#440000" dx="3">S<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.7s" repeatCount="indefinite"/></text>
+      <text x="305" y="74" fill="#000044" dx="1.5">S<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.7s" repeatCount="indefinite"/></text>
+      <text x="305" y="72" fill="url(#sweep)">S<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.7s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- E -->
+    <g>
+      <text x="330" y="76" fill="#440000" dx="3">E<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.8s" repeatCount="indefinite"/></text>
+      <text x="330" y="74" fill="#000044" dx="1.5">E<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.8s" repeatCount="indefinite"/></text>
+      <text x="330" y="72" fill="url(#sweep)">E<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.8s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- L -->
+    <g>
+      <text x="355" y="76" fill="#440000" dx="3">L<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.9s" repeatCount="indefinite"/></text>
+      <text x="355" y="74" fill="#000044" dx="1.5">L<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.9s" repeatCount="indefinite"/></text>
+      <text x="355" y="72" fill="url(#sweep)">L<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="0.9s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- Y -->
+    <g>
+      <text x="380" y="76" fill="#440000" dx="3">Y<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.0s" repeatCount="indefinite"/></text>
+      <text x="380" y="74" fill="#000044" dx="1.5">Y<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.0s" repeatCount="indefinite"/></text>
+      <text x="380" y="72" fill="url(#sweep)">Y<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.0s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- N -->
+    <g>
+      <text x="405" y="76" fill="#440000" dx="3">N<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.1s" repeatCount="indefinite"/></text>
+      <text x="405" y="74" fill="#000044" dx="1.5">N<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.1s" repeatCount="indefinite"/></text>
+      <text x="405" y="72" fill="url(#sweep)">N<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.1s" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- N -->
+    <g>
+      <text x="430" y="76" fill="#440000" dx="3">N<animate attributeName="y" values="76;50;76;76" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.2s" repeatCount="indefinite"/></text>
+      <text x="430" y="74" fill="#000044" dx="1.5">N<animate attributeName="y" values="74;48;74;74" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.2s" repeatCount="indefinite"/></text>
+      <text x="430" y="72" fill="url(#sweep)">N<animate attributeName="y" values="72;46;72;72" keyTimes="0;0.07;0.14;1" dur="4s" begin="1.2s" repeatCount="indefinite"/></text>
     </g>
   </g>
 
-  <!-- Scanline layer -->
+  <!-- Final Scanline Overlay for that CRT Texture -->
   <rect width="600" height="110" fill="url(#scanlines)" pointer-events="none"/>
 </svg>
+
 
