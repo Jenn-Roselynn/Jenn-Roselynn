@@ -1,6 +1,6 @@
 <div align="center">
 
-  ![Title](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/main/Title.Name.svg)
+  ![Title](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/main/Title_Name.svg)
 
   <hr width="100%">
 
