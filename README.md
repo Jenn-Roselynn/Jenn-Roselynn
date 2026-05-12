@@ -1,6 +1,13 @@
 <div align="center">
 
-  <h1>Jenn Roselynn</h1>
+  <svg xmlns="http://www.w3.org/2000/svg" width="500" height="80">
+  <style>
+    text { font-family: monospace; font-size: 36px; fill: white; }
+    .wave { animation: wave 1.5s ease-in-out infinite alternate; }
+    @keyframes wave { from { fill: #ff2222; } to { fill: #2222ff; } }
+  </style>
+  <text x="50" y="55" class="wave">Jenn Roselynn</text>
+</svg>
 
   <hr width="100%">
 
