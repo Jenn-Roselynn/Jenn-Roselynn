@@ -17,6 +17,10 @@
 
 </div>
 
+
+
+
+<!--
 # 📼 Retro Synth & Vaporwave by Rajiv
 
 ![Visual Interface](./Media_Player.svg)
@@ -37,19 +41,4 @@
 | 7 | **Floppy Dreams** | 02:20 | [▶️](https://github.com/user-attachments/files/27698285/Floppy.Dreams.No.Copyright.Music.mp3) |
 | 8 | **Night Drive Tokyo** | 04:04 | [▶️](https://github.com/user-attachments/files/27698280/Night.Drive.Tokyo.No.Copyright.Music.mp3) |
 | 9 | **Cassette Pulse** | 03:25 | [▶️](https://github.com/user-attachments/files/27698278/Cassette.Pulse.No.Copyright.Music.mp3) |
-
-
-<!--
-**Jenn-Roselynn/Jenn-Roselynn** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
 -->
