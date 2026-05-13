@@ -15,14 +15,14 @@
 
   ![Snake animation](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/refs/heads/output/github-contribution-grid-snake-dark.svg)
 
+  <hr width="100%">
+
+  <a href="https://jenn-roselynn.github.io/Jenn-Roselynn/Minesweeper_Index.html">
+    <img src="https://img.shields.io/badge/Play-Minesweeper-0D8584?style=for-the-badge&logo=github" alt="Play Minesweeper"/>
+  </a>
+
 </div>
 
-
-<!--
-[Play Minesweeper](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/main/Minesweeper.svg)
-
-</div>
--->
 
 <!--
 # 📼 Retro Synth & Vaporwave by Rajiv
