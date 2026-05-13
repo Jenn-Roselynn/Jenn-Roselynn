@@ -17,10 +17,12 @@
 
 </div>
 
+
+<!--
 [Play Minesweeper](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/main/Minesweeper.svg)
 
 </div>
-
+-->
 
 <!--
 # 📼 Retro Synth & Vaporwave by Rajiv
