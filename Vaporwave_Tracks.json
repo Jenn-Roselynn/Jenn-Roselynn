@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Neon Chase",
+    "artist": "Rajiv",
+    "filename": "neon_chase.mp4",
+    "duration_seconds": 217,
+    "duration_display": "03:37"
+  },
+  {
+    "id": 2,
+    "title": "VHS Sunset",
+    "artist": "Rajiv",
+    "filename": "vhs_sunset.mp4",
+    "duration_seconds": 213,
+    "duration_display": "03:33"
+  },
+  {
+    "id": 3,
+    "title": "Cyber Tears",
+    "artist": "Rajiv",
+    "filename": "cyber_tears.mp4",
+    "duration_seconds": 183,
+    "duration_display": "03:03"
+  },
+  {
+    "id": 4,
+    "title": "Plastic Skyline",
+    "artist": "Rajiv",
+    "filename": "plastic_skyline.mp4",
+    "duration_seconds": 157,
+    "duration_display": "02:37"
+  },
+  {
+    "id": 5,
+    "title": "Arcade Glow",
+    "artist": "Rajiv",
+    "filename": "arcade_glow.mp4",
+    "duration_seconds": 195,
+    "duration_display": "03:15"
+  },
+  {
+    "id": 6,
+    "title": "Analog Fever",
+    "artist": "Rajiv",
+    "filename": "analog_fever.mp4",
+    "duration_seconds": 166,
+    "duration_display": "02:46"
+  },
+  {
+    "id": 7,
+    "title": "Floppy Dreams",
+    "artist": "Rajiv",
+    "filename": "floppy_dreams.mp4",
+    "duration_seconds": 140,
+    "duration_display": "02:20"
+  },
+  {
+    "id": 8,
+    "title": "Night Drive Tokyo",
+    "artist": "Rajiv",
+    "filename": "night_drive_tokyo.mp4",
+    "duration_seconds": 244,
+    "duration_display": "04:04"
+  },
+  {
+    "id": 9,
+    "title": "Cassette Pulse",
+    "artist": "Rajiv",
+    "filename": "cassette_pulse.mp4",
+    "duration_seconds": 205,
+    "duration_display": "03:25"
+  }
+]
