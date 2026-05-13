@@ -1,0 +1,169 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="520" viewBox="0 0 440 520" id="svgroot">
+  <style>
+    svg { font-family: "Segoe UI", Tahoma, sans-serif; background:#0D8584; user-select: none; }
+    .panel { fill:#C0C0C0; stroke:#7B7B7B; stroke-width:2; }
+    .display { fill:#000; stroke:#222; stroke-width:2; }
+    .digits { fill:#f00; font-weight:700; font-family: monospace; }
+    .face { cursor:pointer; }
+    .tile { fill:#C0C0C0; stroke:#7B7B7B; stroke-width:1; cursor: pointer; }
+    .tile.revealed { fill:#E8E8E8; stroke:#BBB; cursor: default; }
+    .tile.pressed { fill:#AFAFAF; }
+    .num { font-size:14px; font-weight:900; pointer-events:none; }
+    .n1{fill:#0000FA}.n2{fill:#4B802D}.n3{fill:#DB1300}.n4{fill:#202081}.n5{fill:#690400}.n6{fill:#457A7A}.n7{fill:#000}.n8{fill:#7A7A7A}
+    .hidden { display:none }
+  </style>
+
+  <!-- Control Panel -->
+  <g transform="translate(20,16)">
+    <rect x="0" y="0" width="400" height="64" class="panel" rx="4"/>
+    <g transform="translate(12,10)">
+      <rect width="70" height="44" class="display" rx="2"/>
+      <text id="bomb-display" x="35" y="32" text-anchor="middle" class="digits" font-size="24">040</text>
+    </g>
+    <g transform="translate(170,8)" id="faceBtn" class="face">
+      <rect width="60" height="48" fill="#C0C0C0" stroke="#7B7B7B" stroke-width="2" rx="4"/>
+      <g transform="translate(30,24)" id="faceGraphic">
+        <circle r="14" cx="0" cy="0" fill="#FFD54A" stroke="#6b4a00" stroke-width="1"/>
+        <circle r="1.5" cx="-5" cy="-2" fill="#000"/>
+        <circle r="1.5" cx="5" cy="-2" fill="#000"/>
+        <rect x="-6" y="4" width="12" height="2" rx="1" fill="#6b4a00"/>
+      </g>
+    </g>
+    <g transform="translate(318,10)">
+      <rect width="70" height="44" class="display" rx="2"/>
+      <text id="time-display" x="35" y="32" text-anchor="middle" class="digits" font-size="24">000</text>
+    </g>
+  </g>
+
+  <g id="gridWrap" transform="translate(28,100)"></g>
+
+  <script type="application/ecmascript"><![CDATA[
+(function(){
+  const TILE = 24, COLS = 16, ROWS = 16, MINE_COUNT = 40;
+  const gridWrap = document.getElementById('gridWrap'), bombDisplay = document.getElementById('bomb-display');
+  const timeDisplay = document.getElementById('time-display'), faceBtn = document.getElementById('faceBtn'), faceGraphic = document.getElementById('faceGraphic');
+
+  let board = [], started = false, gameOver = false, remaining = ROWS*COLS - MINE_COUNT, flags = 0, timer = null, elapsed = 0, touchTimer = null;
+
+  function idx(r,c){ return r*COLS + c; }
+  function inBounds(r,c){ return r>=0 && c>=0 && r<ROWS && c<COLS; }
+
+  function makeGrid(){
+    gridWrap.innerHTML = ''; board = []; remaining = ROWS*COLS - MINE_COUNT; flags = 0;
+    started = false; gameOver = false; elapsed = 0; clearInterval(timer); timer = null;
+    updateDisplays();
+    for(let r=0;r<ROWS;r++){
+      for(let c=0;c<COLS;c++){
+        const g = document.createElementNS("http://www.w3.org/2000/svg",'g');
+        g.setAttribute('transform', `translate(${c*TILE}, ${r*TILE})`);
+        const rect = document.createElementNS("http://www.w3.org/2000/svg",'rect');
+        rect.setAttribute('width',TILE-1); rect.setAttribute('height',TILE-1);
+        rect.setAttribute('class','tile');
+        const text = document.createElementNS("http://www.w3.org/2000/svg",'text');
+        text.setAttribute('x', TILE/2); text.setAttribute('y', TILE/2 + 5);
+        text.setAttribute('text-anchor','middle'); text.setAttribute('class','num hidden');
+        g.appendChild(rect); g.appendChild(text); gridWrap.appendChild(g);
+        board.push({rect,text,revealed:false,flagged:false,mine:false,adj:0});
+        g.addEventListener('contextmenu', e => e.preventDefault());
+        g.addEventListener('mousedown', () => !gameOver && rect.classList.add('pressed'));
+        g.addEventListener('mouseup', e => {
+          rect.classList.remove('pressed');
+          if(e.button === 2) handleRight(r,c); else handleLeft(r,c);
+        });
+        g.addEventListener('touchstart', e => {
+          e.preventDefault();
+          touchTimer = setTimeout(() => { handleRight(r,c); touchTimer = null; }, 500);
+        }, {passive:false});
+        g.addEventListener('touchend', e => {
+          if(touchTimer){ clearTimeout(touchTimer); touchTimer = null; handleLeft(r,c); }
+        });
+      }
+    }
+  }
+
+  function placeMines(sr, sc){
+    let placed = 0;
+    while(placed < MINE_COUNT){
+      const p = Math.floor(Math.random()*ROWS*COLS);
+      const pr = Math.floor(p/COLS), pc = p%COLS;
+      if(Math.abs(sr-pr)<=1 && Math.abs(sc-pc)<=1) continue;
+      if(!board[p].mine){ board[p].mine = true; placed++; }
+    }
+    board.forEach((cell, i) => {
+      if(cell.mine) return;
+      let r = Math.floor(i/COLS), c = i%COLS, count = 0;
+      for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++)
+        if(inBounds(r+dr, c+dc) && board[idx(r+dr, c+dc)].mine) count++;
+      cell.adj = count;
+    });
+  }
+
+  function revealCell(r,c){
+    const i = idx(r,c), cell = board[i];
+    if(cell.revealed || cell.flagged) return;
+    cell.revealed = true; cell.rect.setAttribute('class','tile revealed');
+    if(cell.mine){ cell.text.textContent = '●'; cell.text.classList.remove('hidden'); return; }
+    remaining--;
+    if(cell.adj > 0){
+      cell.text.textContent = cell.adj;
+      cell.text.setAttribute('class','num n'+cell.adj);
+    } else {
+      for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++)
+        if(inBounds(r+dr, c+dc)) revealCell(r+dr, c+dc);
+    }
+  }
+
+  function handleLeft(r,c){
+    if(gameOver) return;
+    if(!started){ placeMines(r,c); started = true; timer = setInterval(()=>{ elapsed++; updateDisplays(); }, 1000); }
+    const cell = board[idx(r,c)];
+    if(cell.revealed){
+      let flagsAround = 0;
+      for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++)
+        if(inBounds(r+dr, c+dc) && board[idx(r+dr, c+dc)].flagged) flagsAround++;
+      if(flagsAround === cell.adj){
+        for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
+          const rr = r+dr, cc = c+dc;
+          if(inBounds(rr,cc) && !board[idx(rr,cc)].revealed && !board[idx(rr,cc)].flagged){
+            if(board[idx(rr,cc)].mine){ triggerLose(idx(rr,cc)); return; }
+            revealCell(rr,cc);
+          }
+        }
+      }
+    } else if(!cell.flagged){
+      if(cell.mine){ triggerLose(idx(r,c)); return; }
+      revealCell(r,c);
+    }
+    if(remaining === 0){ gameOver = true; clearInterval(timer); faceGraphic.innerHTML = '<circle r="14" cx="0" cy="0" fill="#FFD54A" stroke="#6b4a00"/><path d="M-8,0 l5,5 l10,-10" fill="none" stroke="#060" stroke-width="3"/>'; }
+  }
+
+  function handleRight(r,c){
+    if(gameOver) return;
+    const cell = board[idx(r,c)];
+    if(cell.revealed) return;
+    cell.flagged = !cell.flagged;
+    flags += cell.flagged ? 1 : -1;
+    cell.text.textContent = cell.flagged ? '⚑' : '';
+    cell.text.style.fill = '#D00';
+    cell.text.classList.toggle('hidden', !cell.flagged);
+    updateDisplays();
+  }
+
+  function triggerLose(idx){
+    gameOver = true; clearInterval(timer);
+    board.forEach((c, i) => { if(c.mine){ c.rect.classList.add('revealed'); c.text.textContent = '●'; c.text.classList.remove('hidden'); }});
+    board[idx].rect.style.fill = '#ff0000';
+    faceGraphic.innerHTML = '<circle r="14" cx="0" cy="0" fill="#FFD54A" stroke="#6b4a00"/><circle r="1.5" cx="-5" cy="-2" fill="#000"/><circle r="1.5" cx="5" cy="-2" fill="#000"/><path d="M-6,6 q6,-6 12,0" fill="none" stroke="#6b4a00" stroke-width="2"/>';
+  }
+
+  function updateDisplays(){
+    bombDisplay.textContent = Math.max(0, MINE_COUNT - flags).toString().padStart(3,'0');
+    timeDisplay.textContent = elapsed.toString().padStart(3,'0');
+  }
+
+  faceBtn.addEventListener('click', () => { faceGraphic.innerHTML = '<circle r="14" cx="0" cy="0" fill="#FFD54A" stroke="#6b4a00"/><circle r="1.5" cx="-5" cy="-2" fill="#000"/><circle r="1.5" cx="5" cy="-2" fill="#000"/><rect x="-6" y="4" width="12" height="2" rx="1" fill="#6b4a00"/>'; makeGrid(); });
+  makeGrid();
+})();
+  ]]></script>
+</svg>
