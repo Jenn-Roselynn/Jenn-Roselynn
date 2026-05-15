@@ -8,12 +8,16 @@
 
   <hr width="100%">
 
+  ![Helios Solar System](https://raw.githubusercontent.com/Jenn-Roselynn/Jenn-Roselynn/main/Helios_Solar_System.svg)
+
+  <hr width="100%">
+
   <a href="https://transmogrify-my-life.itch.io">
-  <img src="https://static.itch.io/images/app-icon.svg" height="40" alt="Itch.io Profile"/>
-</a>
+    <img src="https://static.itch.io/images/app-icon.svg" height="40" alt="Itch.io Profile"/>
+  </a>
   <a href="https://www.boot.dev/u/jenn_roselynn">
-  <img src="https://www.boot.dev/img/bootdev-logo-full-400.png" height="40" alt="Boot.dev Profile"/>
-</a>
+    <img src="https://www.boot.dev/img/bootdev-logo-full-400.png" height="40" alt="Boot.dev Profile"/>
+  </a>
 
   <hr width="100%">
 
@@ -22,6 +26,7 @@
   </a>
 
 </div>
+
 
 
 <!--
